@@ -1,5 +1,5 @@
 # vinay1
-//code for the perform arithmetic operations for the two numbers
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@
    
 </head>
 <body>
-    <h1>assignment operator</h1>
+    <h1>code for the perform arithmetic operations for the two numbers</h1>
     <input type="text" id="num1" placeholder="num1">
     <select id="opt">
         <option id="add" >+</option>
