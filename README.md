@@ -1,4 +1,6 @@
 # vinay1
+//code for the perform arithmetic operations for the two numbers
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
