@@ -1,47 +1,52 @@
-# vinay1
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-   
+    <title>sri ram rohit</title>
 </head>
 <body>
-    <h1>Perform arithmetic operations on the two numbers</h1>
-    <input type="text" id="num1" placeholder="num1">
-    <select id="opt">
-        <option id="add" >+</option>
-        <option id="sub">-</option>
+  
+    
+
+    <h1>performing arithmetic operation on the two numbers</h1>
+    <input type="text" id="num1" placeholder="enter your number..">
+    <select id="sel">
+        <option id="plus">+</option>
+        <option id="minus">-</option>
         <option id="multi">*</option>
         <option id="divi">/</option>
     </select>
-    <input type="text" id="num2" placeholder="num2">
-    <button onclick="asm()" >find</button>
-    <input type="text" id="result" placeholder="your result is appear here..">
+    <input type="text" id="num2" placeholder="enter your number.."><br><br>
+    <button onclick="asm()">result</button><br><br>
+    <input type="text" id="result" placeholder="your result is appear here...">
+  
+
 <script>
-    function asm(){
-        var num1=Number(document.getElementById("num1").value);
-        var num2=Number(document.getElementById("num2").value);
-        if(document.getElementById("opt").value==document.getElementById("add").value){
-            var res=num1+num2;
-            document.getElementById("result").value=res;
-        }
-       else if(document.getElementById("opt").value==document.getElementById("sub").value){
-            var res=num1-num2;
-            document.getElementById("result").value=res;
-        }
-        else if(document.getElementById("opt").value==document.getElementById("multi").value){
-            var res=num1*num2;
-            document.getElementById("result").value=res;
-        }
-         else{
-            var res=num1/num2;
-            document.getElementById("result").value=res;
-        }
-    }
+   function asm(){
+    var num1=Number(document.getElementById("num1").value);
+    var num2=Number(document.getElementById("num2").value);
+    var res;
+      if(document.getElementById("sel").value==document.getElementById("plus").value){
+         res=num1+num2;
+   
+      }
+     else if(document.getElementById("sel").value==document.getElementById("minus").value){
+         res=num1-num2;
+   
+      }
+      else if(document.getElementById("sel").value==document.getElementById("multi").value){
+         res=num1*num2;
+   
+      } 
+      else{
+         res=num1/num2;
+   
+      }
+      document.getElementById("result").value=res;
+ 
+
+   }
 </script>
 </body>
 </html>
