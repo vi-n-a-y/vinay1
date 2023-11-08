@@ -27,15 +27,16 @@
     var num1=Number(document.getElementById("num1").value);
     var num2=Number(document.getElementById("num2").value);
     var res;
-      if(document.getElementById("sel").value==document.getElementById("plus").value){
+       var op=document.getElementById("sel").value;
+      if(op==document.getElementById("plus").value){
          res=num1+num2;
    
       }
-     else if(document.getElementById("sel").value==document.getElementById("minus").value){
+     else if(op==document.getElementById("minus").value){
          res=num1-num2;
    
       }
-      else if(document.getElementById("sel").value==document.getElementById("multi").value){
+      else if(op==document.getElementById("multi").value){
          res=num1*num2;
    
       } 
