@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>time convertor</title>
+</head>
+<body>
+    <input type="text" id="your" placeholder="enter your time">
+    
+    <select id="sele">
+        <optgroup label="your time zone">
+        <option value="htc">HST</option>
+        <option value="ist">IST</option>
+        <option value="est">EST</option>
+    </select>
+    
+    <select id="sel">
+        <optgroup label="select time zone to convert">
+        <option value="htc">HST</option>
+        <option value="ist">IST</option>
+        <option value="est">EST</option>
+    </select>
+    <button onclick="time_fun()">find</button>
+    <input type="text" id="our" placeholder="your time will display here">
+<script>
+    function time_fun(){
+
+        var s0=document.getElementById("sele").value;
+        var s1=document.getElementById("sel").value;
+        var t1=Number(document.getElementById("your").value);
+      
+       if(s0==s1){
+        t1=t1;
+       }  else if((s0=="htc" && s1=="ist")){
+            t1=t1+4; 
+        }
+        else if( s0="ist"    && s1=="htc"){
+            t1=t1-4;
+        }
+        else if( s0="htc"    && s1=="est"){
+            t1=t1+5;
+        }
+        else if( s0="est"    && s1=="htc"){
+            t1=t1-5;
+        }
+        else if( s0="ist"    && s1=="est"){
+            t1=t1+6;
+        }
+        else if( s0="est"    && s1=="ist"){
+            t1=t1-6;
+        }
+        document.getElementById("our").value=t1;   
+    }
+</script>
+    
+</body>
+</html>
