@@ -33,6 +33,7 @@ if(dto!=null){%>
 
 <%}else{ %>
 <h1>Successfully inserted the data</h1>
+<h1>insert employee details</h1>
 
 
 <%} %>
