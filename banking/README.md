@@ -1,3 +1,5 @@
+SQL Queries
+
 create table User(
 id int primary key auto_increment,
 uname varchar(50) unique,
