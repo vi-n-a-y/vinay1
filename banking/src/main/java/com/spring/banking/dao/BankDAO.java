@@ -8,12 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import com.spring.banking.dto.Account;
 import com.spring.banking.dto.Transaction;
 import com.spring.banking.dto.User;
-
 
 public class BankDAO {
 
@@ -91,9 +88,7 @@ public class BankDAO {
 
 		return data;
 	}
-	
-	
-	
+
 	// Getting account details from the database
 	public List<Account> getAccDetails(int id) {
 
@@ -131,27 +126,53 @@ public class BankDAO {
 
 		return accDetList;
 	}
-	
-	public int setTransactionDetails(Transaction trxns ) {
-		String send_money_db ="insert into trxn(fromAcc,toAcc,description,amountSend,balance,userId)values"+
-				 "('" + trxns.getFromAcc()
-					+ "','" + trxns.getToAcc() + "','" + trxns.getDescription() + "','" + trxns.getAmountSend() + "','"
-					+ trxns.getBalance() + "','" + trxns.getUserId() + "')";;
-		int result=0;
-		try{
+
+	public int setTransactionDetails(Transaction trxns) {
+		String send_money_db = "insert into trxn(fromAcc,toAcc,description,amountSend,balance,userId)values" + "('"
+				+ trxns.getFromAcc() + "','" + trxns.getToAcc() + "','" + trxns.getDescription() + "','"
+				+ trxns.getAmountSend() + "','" + trxns.getBalance() + "','" + trxns.getUserId() + "')";
+		;
+		int result = 0;
+		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
-			PreparedStatement ps=con.prepareStatement(send_money_db);
-			  result=ps.executeUpdate();	
-		}catch(Exception e) {
+			PreparedStatement ps = con.prepareStatement(send_money_db);
+			result = ps.executeUpdate();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		System.out.println(result);
 		return result;
 	}
-	
-	
+
+	public List<Transaction> getStatement(String acc) {
+		List<Transaction> trnDto = new ArrayList<Transaction>();
+		String miniStatement = "select * from trxn where fromAcc=" + acc;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(miniStatement);
+
+			while (rs.next()) {
+				Transaction accDetails = new Transaction();
+				accDetails.setUserId(rs.getInt("userId"));
+				accDetails.setTrnDate(rs.getDate("trnDate"));
+				accDetails.setTrnId(rs.getInt("trnId"));
+				accDetails.setFromAcc(rs.getString("fromAcc"));
+				accDetails.setToAcc(rs.getString("toAcc"));
+				accDetails.setDescription(rs.getString("description"));
+				accDetails.setBalance(rs.getDouble("balance"));
+				accDetails.setAmountSend(rs.getDouble("amountSend"));
+				trnDto.add(accDetails);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return trnDto;
+	}
 
 }

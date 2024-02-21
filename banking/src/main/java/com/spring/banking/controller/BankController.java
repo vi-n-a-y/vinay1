@@ -19,16 +19,16 @@ public class BankController {
 	BankDAO dao = new BankDAO();
 
 	@PostMapping("/login")
-	public User checkCredintials(@RequestParam(name = "uname") String userName,
-			@RequestParam(name = "pass") String userPass) {
+	public User checkCredintials(@RequestParam(name = "uname") String userName,@RequestParam(name = "pass") String userPass) {
+			
 		return dao.checkCredintials(userName, userPass);
 
 	}
 
 	@PostMapping("/register")
-	public User registerDetails(@RequestBody User dto) {
-		dao.registerDetails(dto);
-		return dto;
+	public User registerDetails(@RequestBody User user) {
+		dao.registerDetails(user);
+		return user;
 	}
 
 	@PostMapping("/add/acc")
@@ -43,11 +43,14 @@ public class BankController {
 
 	}
 
-	@PostMapping("/trxns")
+	@PostMapping("add/trxn")
 	public Transaction setTrxns(@RequestBody Transaction trxn) {
 		dao.setTransactionDetails(trxn);
 		return trxn;
 	}
-}
 	
-
+	@PostMapping("/get/trxns")
+	public List<Transaction> getTrxns(@RequestParam(name="accNmbr") String accNmbr) {
+		return dao.getStatement(accNmbr);
+	}
+}
