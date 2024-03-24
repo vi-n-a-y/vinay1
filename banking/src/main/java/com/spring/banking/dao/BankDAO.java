@@ -88,8 +88,6 @@ public class BankDAO {
 
 		return data;
 	}
-
-	// Getting account details from the database
 	public List<Account> getAccDetails(int id) {
 
 		List<Account> accDetList = new ArrayList<Account>();
@@ -115,11 +113,7 @@ public class BankDAO {
 				accDetails.setUserId(rs.getInt("userId"));
 				accDetList.add(accDetails);
 			}
-
-//				if (accDetails.getId()==0) {
-//					accDetList = null;
-//				}
-//			
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
