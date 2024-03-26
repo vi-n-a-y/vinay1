@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+               
+     <!-- <bean id="st1" class="com.vin.Student">
+     <property name="age"  value="24"></property>
+     <property name="name" value="vinay"></property>
+     </bean>  --> 
+     <bean id="st2" class="com.vin.Student">
+     <constructor-arg value="balu"> </constructor-arg>
+     <constructor-arg value="10" type="int"></constructor-arg>
+     </bean>        
+               
+ </beans>  
