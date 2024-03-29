@@ -10,10 +10,14 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hiber</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
-		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>  <!--  Using this property is optional from jdbc 4 and java 8 onwards is optional. In jdbc 4, there is autoloading feature of driver class. It will automatically loads the required driver by taking information from hibernate jar files. -->
+		<property name="hibernate.show_sql">true</property>   <!-- This property will make hibernate to show the generated SQL query as log message in console  -->
+		<property name="format_sql">true</property>  <!--  to show the sql generated query in formated way. This property is used with the show_sql property. -->
+		
 
 		<mapping resource="student.hbm.xml" />
 		
 	</session-factory>
 </hibernate-configuration> 
+
+<!-- DTD - Document type definition  -->

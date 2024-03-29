@@ -1,32 +1,39 @@
 package com.vin.hibernate_demo;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class App {
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
-    	Session session = HibernateUtil.getSessionFactory().openSession();
-//		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-//		Session session = sf.openSession();
+		Configuration cfg = new Configuration().configure();
+//		cfg.configure();
 
-		session.beginTransaction();
+		SessionFactory sessionFactory = cfg.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
 		First_Class fc = new First_Class();
-//       fc.setId(6);
-		fc.setName("chaitu");
-		fc.setMarks(76);
+		fc.setId(13);
+		fc.setName("sampath");
+		fc.setMarks(69);
 
-		session.persist(fc);
-		session.getTransaction().commit();
-		session.close();
+		try {
+			Transaction tx = session.beginTransaction();
+//			session.persist(fc);
+			System.out.println("the save will give the " + session.save(fc));
+			tx.commit();
+		} catch (HibernateException HiEx) {
+			HiEx.printStackTrace();
+
+		} finally {
+			session.close();
+			sessionFactory.close();
+		}
+
 	}
-}
 
-////Configuration con = new Configuration().configure();
-////SessionFactory sf= con.buildSessionFactory();
-////
-//SessionFactory sf = new Configuration().configure().buildSessionFactory();
-//
-//Session session = sf.openSession();
+}
