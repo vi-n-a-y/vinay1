@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.vin.Student" id="st1">
+	<property name="name" value="vinay"></property>
+	<property name = "rollno" value="25"></property>
+	<property name="marks" value="95"/>
+	<property name="age" value="23"></property>
+	</bean>
+	<bean class="com.vin.Student" id="st2">
+	<property name="name" value="Krishna"/>
+	<property name="rollno" value="9"/>
+	<property name="marks" value="88"/>
+	</bean>
+
+</beans>
+
+<!-- search (spring configuration xml file schema) - to get this links -->
