@@ -1,15 +1,22 @@
 package com.vin;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 @Component
+//@Component("vinay") we also give below annotations to configure the class
+//@Service
+//@Repository
+
 public class Student {
-	@Value("vinay")
+	@Value("balu")
 	private String name;
-	@Value("45")
+	@Value("15")
 	private int rollno;
-	@Value("88")
+	@Value("56")
 	private int marks;
 	
 	
@@ -34,9 +41,9 @@ public class Student {
 
 	
 	public void display() {
-		System.out.println(name);
-		System.out.println(rollno);
-		System.out.println(marks);
+		System.out.println("Name : "+name);
+		System.out.println("Rollno : "+rollno);
+		System.out.println("Marks : "+marks);
 	}
 
 }

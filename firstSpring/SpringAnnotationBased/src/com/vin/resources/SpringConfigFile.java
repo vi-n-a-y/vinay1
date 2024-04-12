@@ -5,8 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
-
-@ComponentScan("com.vin.Student")
+@ComponentScan("com.vin")
 public class SpringConfigFile {
 
 }

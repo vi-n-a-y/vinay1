@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfigFile.class);
-		Student st1=(Student) context.getBean("student");
+		Student st1=(Student) context.getBean(Student.class);
 		st1.display();
 	}
 
