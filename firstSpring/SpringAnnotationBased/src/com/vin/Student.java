@@ -46,4 +46,8 @@ public class Student {
 		System.out.println("Marks : "+marks);
 	}
 
+	public Student{
+		System.out.println("constructor is called ");
+	}
+
 }
