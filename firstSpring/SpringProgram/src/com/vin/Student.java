@@ -39,6 +39,10 @@ public class Student {
 		System.out.println("Age : "+age);
 		System.out.println("Marks : "+marks);
 	}
+
+	public Student(){
+		System.out.println("Constructor is called");
+	}
 	
 
 	
