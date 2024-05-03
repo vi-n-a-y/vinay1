@@ -17,25 +17,26 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/emp")
 public class EmployeeDemo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-  
-    public EmployeeDemo() {
-        super();
-       
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		int id=Integer.parseInt(request.getParameter("empId"));
+	public EmployeeDemo() {
+		super();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		int id = Integer.parseInt(request.getParameter("empId"));
 		System.out.println(id);
 		try {
-			String str="select * from employee where id="+id;
+			String str = "select * from employee where id=" + id;
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/bank","root","root");
-			PreparedStatement ps=con.prepareStatement(str);
-			ResultSet rs=ps.executeQuery();
-			if(rs.next()) {
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
+			PreparedStatement ps = con.prepareStatement(str);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
 				rs.getInt(1);
 				rs.getString(2);
 				rs.getString(3);
@@ -46,24 +47,21 @@ public class EmployeeDemo extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
 				rd.forward(request, response);
 				HttpSession session = request.getSession();
-				session.setAttribute("s", rs);
-			
-			}else
+				session.setAttribute("s", rs.getDouble(6));
+				request.setAttribute("sal", rs.getDouble(6));
+
+			} else
 				response.sendRedirect("index.jsp");
-				
-			
-		}
-		catch(Exception ex)
-		{
-		
+
+		} catch (Exception ex) {
+
 			ex.printStackTrace();
 		}
 	}
-		
-	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 
