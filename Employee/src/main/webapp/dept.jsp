@@ -9,9 +9,15 @@
 </head>
 <body>
 	<h1>successFully getting data</h1>
-	<%-- <%double s=(double)session.getAttribute("s"); %> --%>
-	<%request.getAttribute("sal"); %>
+
+	<%double sal=(Double)request.getAttribute("sal"); %>
 	<%out.print(request.getAttribute("sal")); %>
+
+	<% 
+        // Retrieve the double value from session
+        HttpSession session1 = request.getSession();
+        double sali = (Double)session1.getAttribute("sal");
+    %>
 
 
 </body>
