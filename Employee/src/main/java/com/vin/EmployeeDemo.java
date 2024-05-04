@@ -42,13 +42,14 @@ public class EmployeeDemo extends HttpServlet {
 				rs.getString(3);
 				rs.getInt(4);
 				rs.getDate(5);
-				rs.getDouble(6);
+				double sal = rs.getDouble(6);
+				System.out.println(sal);
 				System.out.println(rs.getString(2));
 				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
 				rd.forward(request, response);
 				HttpSession session = request.getSession();
-				session.setAttribute("s", rs.getDouble(6));
-				request.setAttribute("sal", rs.getDouble(6));
+				session.setAttribute("sal", sal);
+				request.setAttribute("sal", sal);
 
 			} else
 				response.sendRedirect("index.jsp");
