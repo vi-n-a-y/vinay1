@@ -46,11 +46,11 @@ public class EmployeeDemo extends HttpServlet {
 				System.out.println(sal);
 				System.out.println(rs.getString(2));
 				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
-				rd.forward(request, response);
+
 				HttpSession session = request.getSession();
 				session.setAttribute("sal", sal);
 				request.setAttribute("sal", sal);
-
+				rd.forward(request, response);
 			} else
 				response.sendRedirect("index.jsp");
 
@@ -63,7 +63,8 @@ public class EmployeeDemo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		doGet(request, response);
+		double updateSalary = Double.parseDouble(request.getParameter("updateSalary"));
+		System.out.println(updateSalary);
 	}
 
 }
