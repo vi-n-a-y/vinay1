@@ -7,10 +7,10 @@
 <title>Employee Information</title>
 </head>
 <body>
-<form action="emp">
+<form action="emp" method="get">
 <label>name : </label>
 <input type="text" name="empId"/>
-<input type="submit"/>
+<button>Submit</button>
 </form>
 </body>
 </html>
