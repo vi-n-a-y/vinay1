@@ -10,7 +10,7 @@
 <form action="emp">
 <label>name : </label>
 <input type="text" name="empId"/>
-<button>Submit</button>
+<input type="submit"/>
 </form>
 </body>
 </html>
