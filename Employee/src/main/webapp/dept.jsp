@@ -9,15 +9,23 @@
 </head>
 <body>
 	<h1>successFully getting data</h1>
+	<form action="emp" method="post">
+		<%
+		double sal = (Double) request.getAttribute("sal");
+		%>
+		<%
+		out.print(sal);
+		%>
 
-	<%double sal=(Double)request.getAttribute("sal"); %>
-	<%out.print(request.getAttribute("sal")); %>
 
-	<% 
+		<label>Update Salary : </label><input type="text" name="updateSalary" />
+		<button>submit</button>
+	</form>
+	<%-- <% 
         // Retrieve the double value from session
         HttpSession session1 = request.getSession();
         double sali = (Double)session1.getAttribute("sal");
-    %>
+    %> --%>
 
 
 </body>
