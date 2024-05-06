@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,25 +33,25 @@ public class EmployeeDemo extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("empId"));
 		System.out.println(id);
 		try {
-			String str = "select * from employee where id=" + id;
+			String str = "select * from emp where id=" + id;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
 			PreparedStatement ps = con.prepareStatement(str);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				rs.getInt(1);
-				rs.getString(2);
-				rs.getString(3);
-				rs.getInt(4);
-				rs.getDate(5);
-				double sal = rs.getDouble(6);
-				System.out.println(sal);
+				String name=rs.getString(2);
+				Date hireDate=rs.getDate(4);
+				System.out.println(hireDate);
+			
+				System.out.println(name);
 				System.out.println(rs.getString(2));
 				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
 
 				HttpSession session = request.getSession();
-				session.setAttribute("sal", sal);
-				request.setAttribute("sal", sal);
+		
+				request.setAttribute("name",name);
+				request.setAttribute("hireDate", hireDate);
 				rd.forward(request, response);
 			} else
 				response.sendRedirect("index.jsp");
@@ -62,9 +64,34 @@ public class EmployeeDemo extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		int id = Integer.parseInt(request.getParameter("empId"));
 		double updateSalary = Double.parseDouble(request.getParameter("updateSalary"));
 		System.out.println(updateSalary);
+		
+		String str = "update emp set salary="+updateSalary+" where id="+id;
+		
+		
+		try {
+		
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
+			PreparedStatement ps = con.prepareStatement(str);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
+				double sal = rs.getDouble(5);
+				request.setAttribute("sal",sal);
+				
+				rd.forward(request, response);
+			} else
+				response.sendRedirect("index.jsp");
+
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+		}
 	}
 
 }
+
