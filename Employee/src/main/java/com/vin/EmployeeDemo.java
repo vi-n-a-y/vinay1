@@ -107,3 +107,30 @@ public class EmployeeDemo extends HttpServlet {
 		}
 
 }
+
+
+// create table dept(
+// id int auto_increment primary key,
+// dept_name varchar(50));
+
+
+// create table employee(
+// id int auto_increment primary key,
+// emp_name varchar(50) not null,
+// emp_nmbr varchar(50) not null,
+// dept_id int ,
+// join_date date ,
+// salary double, foreign key (dept_id) references dept(id));
+// select * from dept;
+// insert into employee(emp_name,emp_nmbr,dept_id,salary) 
+// values 
+// ("krishna","14587",1,21000),
+// ("Rohit","58746",2,20000),
+// ("tirumala","68950",3,31000);
+// select * from employee;
+// use bank;
+// select * from employee;
+
+// update employee set salary=11000.0 where id=1;
+
+
