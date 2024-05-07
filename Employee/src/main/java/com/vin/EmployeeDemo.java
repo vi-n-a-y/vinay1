@@ -77,21 +77,33 @@ public class EmployeeDemo extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
 			PreparedStatement ps = con.prepareStatement(str);
-			int rs = ps.executeUpdate();
-			if (rs!=0) {
-				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
-				double sal = ps.getDouble(5);
-				request.setAttribute("sal",sal);
-				System.out.println(sal);
-				
-				rd.forward(request, response);
-			} else
-				response.sendRedirect("index.jsp");
+			int data = ps.executeUpdate();
+			if (data>0) {
+				 String selectQuery = "SELECT salary FROM employee WHERE id = ?";
+		            try (PreparedStatement ps1 = con.prepareStatement(selectQuery)) {
+		                ps1.setInt(1, id);
+		                try (ResultSet rs = ps1.executeQuery()) {
+		                    if (rs.next()) {
+		                        double sal = rs.getDouble(1); // Assuming salary is the first column in the SELECT query
+		                        request.setAttribute("sal", sal);
+		                        System.out.println(sal);
+		                        
+		                        RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
+		                        rd.forward(request, response);
+		                    }
+		                }
+		            }
+		        } else {
+		            response.sendRedirect("index.jsp");
+		        }
 
-		} catch (Exception ex) {
-
-			ex.printStackTrace();
+		    } catch (SQLException ex) {
+		        ex.printStackTrace();
+		        // Handle SQLException appropriately
+		    } catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-	}
 
 }
