@@ -33,7 +33,7 @@ public class EmployeeDemo extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("empId"));
 		System.out.println(id);
 		try {
-			String str = "select * from emp where id=" + id;
+			String str = "select * from employee where id=" + id;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
 			PreparedStatement ps = con.prepareStatement(str);
@@ -41,7 +41,7 @@ public class EmployeeDemo extends HttpServlet {
 			if (rs.next()) {
 				rs.getInt(1);
 				String name=rs.getString(2);
-				Date hireDate=rs.getDate(4);
+				Date hireDate=rs.getDate(5);
 				System.out.println(hireDate);
 			
 				System.out.println(name);
@@ -65,23 +65,24 @@ public class EmployeeDemo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("empId"));
+		int id = 1;
 		double updateSalary = Double.parseDouble(request.getParameter("updateSalary"));
 		System.out.println(updateSalary);
 		
-		String str = "update emp set salary="+updateSalary+" where id="+id;
+		String str = "update employee set salary="+updateSalary+" where id="+id;
 		
-		
+		System.out.println(str);
 		try {
 		
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "root");
 			PreparedStatement ps = con.prepareStatement(str);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			int rs = ps.executeUpdate();
+			if (rs!=0) {
 				RequestDispatcher rd = request.getRequestDispatcher("dept.jsp");
-				double sal = rs.getDouble(5);
+				double sal = ps.getDouble(5);
 				request.setAttribute("sal",sal);
+				System.out.println(sal);
 				
 				rd.forward(request, response);
 			} else
@@ -94,4 +95,3 @@ public class EmployeeDemo extends HttpServlet {
 	}
 
 }
-
