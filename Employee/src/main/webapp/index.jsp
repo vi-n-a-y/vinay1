@@ -8,8 +8,8 @@
 </head>
 <body>
 <form action="emp" method="get">
-<label>name : </label>
-<input type="text" name="empId"/>
+<label>Employee Id : </label>
+<input type="text" name="empId" placeholder="id"/>
 <button>Submit</button>
 </form>
 </body>
